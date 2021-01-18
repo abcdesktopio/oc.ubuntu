@@ -31,7 +31,7 @@ jobs:
           context: .
           push: true
           tags: |
-            abcdesktopio/oc.ubuntu.18.04:latest
+            abcdesktopio/oc.ubuntu.18.04:dev
 
       - name: Dispatch to repository oc.software.18.04
         uses: peter-evans/repository-dispatch@v1
