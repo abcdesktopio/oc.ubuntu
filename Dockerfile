@@ -1,9 +1,9 @@
 FROM ubuntu:18.04
 
-MAINTAINER Alexandre DEVELY
+LABEL maintainer="Alexandre DEVELY"
 
 LABEL vcs-type "git"
-LABEL vcs-url  "https://github.com/abcdesktopio/oc.user.18.04"
+LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.18.04"
 LABEL vcs-ref  "master"
 LABEL release  "5"
 LABEL version  "1.2"
