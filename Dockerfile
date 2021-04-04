@@ -19,15 +19,15 @@ RUN apt-get update && apt-get install -y  --no-install-recommends \
 		dialog 						\
     	debconf-utils 				\
     	software-properties-common 	\
-	    locales		
+	    locales						\		
     && apt-get clean
 
 
-RUN  apt-get update && apt-get install -y --no-install-recommends \
-		language-pack-en 			\
-		language-pack-fr 			\
-		&& locale-gen	 			\
-    && apt-get clean
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		language-pack-en			\
+		language-pack-fr			\
+	&& locale-gen					\
+	&& apt-get clean
 
 # RUN dpkg-reconfigure locales
 # RUN locale-gen fr_FR.UTF-8
