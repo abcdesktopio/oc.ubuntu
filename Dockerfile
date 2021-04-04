@@ -14,26 +14,20 @@ ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y  --no-install-recommends \
-        apt-utils                       \
-        && apt-get clean
-
-
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y  --no-install-recommends \
-    	dialog 				\
-    	debconf-utils 			\
+RUN apt-get update && apt-get install -y  --no-install-recommends \
+        apt-utils                   \
+		dialog 						\
+    	debconf-utils 				\
     	software-properties-common 	\
-	locales				\
-	&& apt-get clean 
+	    locales		
+    && apt-get clean
 
-#    nginx
-#    libterm-readline-gnu-perl 
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-	language-pack-en \
-	language-pack-fr \
-	&& locale-gen	 \
-        && apt-get clean
+RUN  apt-get update && apt-get install -y --no-install-recommends \
+		language-pack-en 			\
+		language-pack-fr 			\
+		&& locale-gen	 			\
+    && apt-get clean
 
 # RUN dpkg-reconfigure locales
 # RUN locale-gen fr_FR.UTF-8
@@ -44,14 +38,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
 
 
 # python-software-properties is use for add-apt-repository
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+RUN  apt-get update && apt-get install -y --no-install-recommends \
     	software-properties-common 	\
-   	net-tools 			\
-    	libgtk-3-0 			\
-    	libgtk-3-bin 			\
-    	sudo 				\
-    	curl 				\
-        && apt-get clean
+   		net-tools 					\
+    	libgtk-3-0 					\
+    	libgtk-3-bin 				\
+    	sudo 						\
+    	curl 						\
+    && apt-get clean
 	
 
 
@@ -65,15 +59,15 @@ RUN echo "NO_AT_BRIDGE=1" >> /etc/environment
 # xsettings 
 # xdotools 
 # wmctrl 
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y --no-install-recommends \
-	x11-utils 			\
-	supervisor 			\
-	x11-xserver-utils 		\
-	xsettingsd			\
-	xdotool 			\
-	xdg-utils 			\
+RUN   apt-get update && apt-get install -y --no-install-recommends \
+		x11-utils 			\
+		supervisor 			\
+		x11-xserver-utils 	\
+		xsettingsd			\
+		xdotool 			\
+		xdg-utils 			\
         wmctrl 				\
-        && apt-get clean
+    && apt-get clean
 
 
 ##
@@ -83,91 +77,80 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula selec
 		
 ## 
 # install fonts and themes
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y --no-install-recommends \
-	xfonts-base			\
+RUN  apt-get update && apt-get install -y --no-install-recommends \
+		xfonts-base						\
         xfonts-encodings                \
         xfonts-utils                    \
-	xfonts-100dpi			\
-	xfonts-75dpi			\
-	xfonts-cyrillic			\
-        ubuntustudio-fonts              \
-   	libfontconfig 			\
-    	libfreetype6 			\
-    	ttf-ubuntu-font-family 		\
-	ttf-dejavu-core			\
-        fonts-freefont-ttf		\
-  	fonts-croscore                  \
-        fonts-dejavu-core               \
-        fonts-horai-umefont             \
-        fonts-noto                      \
-        fonts-opendyslexic              \
-        fonts-roboto                    \
-        fonts-roboto-hinted             \
-        fonts-sil-mondulkiri            \
-        fonts-unfonts-core              \
-        fonts-wqy-microhei              \
-	fonts-ipafont-gothic            \
-        fonts-wqy-zenhei                \
-        fonts-tlwg-loma-otf             \
-        && apt-get clean
+		fonts-noto 						\
+		fonts-roboto 					\
+		fonts-ubuntu 					\
+		fonts-freefont-ttf 				\
+		fonts-wine 						\
+		ttf-ubuntu-font-family 			\
+    && apt-get clean
 
 #
 # install themes
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         gnome-icon-theme                \
         gnome-icon-theme-symbolic       \
         gnome-font-viewer               \
-        && apt-get clean
+    && apt-get clean
 
 
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y --no-install-recommends \
-	pulseaudio 			\
-	pulseaudio-utils 		\
-        && apt-get clean
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		pulseaudio 						\
+		pulseaudio-utils 				\
+    && apt-get clean
 
 # add numix theme
-RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:numix:ppa -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-	numix-gtk-theme 	\
-	numix-icon-theme-circle \
-	numix-icon-theme-square \
+RUN add-apt-repository ppa:numix:ppa -y && \
+		apt-get update 	&& apt-get install -y --no-install-recommends \
+		numix-gtk-theme 				\
+		numix-icon-theme-circle 		\
+		numix-icon-theme-square 		\
  	&& apt-get clean
 
 # Developper Section
-RUN DEBIAN_FRONTEND=noninteractive  apt-get update && apt-get install -y --no-install-recommends \
-	git wget unzip vim openssh-client build-essential make g++ \
-        && apt-get clean
-
-
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		git 							\
+		wget 							\
+		unzip 							\
+		vim 							\
+		openssh-client 					\
+		build-essential 				\
+		make 							\
+		g++ 							\
+    && apt-get clean
 
 # X11
 # openbox
 # python-xdg python-xdgapp for autostart in openbox
 # obconf for openbox 
 #  
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends  \
-	python-xdg 		\
-        obconf 			\
-	x11-apps 		\
-        lxappearance-obconf 	\
-        lxappearance 		\
-        gtk2-engines 		\
-	gtk2-engines-pixbuf 	\ 
-	gettext 		\
-	autocutsel 		\
-        && apt-get clean
+RUN apt-get update && apt-get install -y --no-install-recommends  \
+		python-xdg 						\
+        obconf 							\
+		x11-apps 						\
+        lxappearance-obconf 			\
+        lxappearance 					\
+        gtk2-engines 					\
+		gtk2-engines-pixbuf 			\ 
+		gettext 						\
+		autocutsel 						\
+    && apt-get clean
 
 
 # cups-pdf: pdf printer support
 # scrot: screenshot tools
 # smbclient need to install smb printer
 # cups: printer support
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+RUN  apt-get update && apt-get install -y --no-install-recommends \
         smbclient	\
-	cups-pdf 	\
-	scrot  		\
+		cups-pdf 	\
+		scrot  		\
         cups		\
-        && apt-get clean
+    && apt-get clean
 
 
 ADD openbox_18.04/*.deb /tmp/
@@ -177,6 +160,3 @@ RUN cd /tmp && \
     dpkg -i openbox_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && rm openbox_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
     rm -rf /tmp/*.deb
     
-# Change default access permission
-# RUN chmod 755 /usr/lib/cups/backend/cups-pdf
-
