@@ -98,30 +98,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		pulseaudio 						\
+RUN apt-get update && apt-get install -y --no-install-recommends\
+		pulseaudio 					\
 		pulseaudio-utils 				\
     && apt-get clean
 
 # add numix theme
 RUN add-apt-repository ppa:numix:ppa -y && \
 		apt-get update 	&& apt-get install -y --no-install-recommends \
-		numix-gtk-theme 				\
-		numix-icon-theme-circle 		\
+		numix-gtk-theme 			\
 		numix-icon-theme-square 		\
  	&& apt-get clean
-
-# Developper Section
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		git 							\
-		wget 							\
-		unzip 							\
-		vim 							\
-		openssh-client 					\
-		build-essential 				\
-		make 							\
-		g++ 							\
-    && apt-get clean
 
 # X11
 # openbox
@@ -129,15 +116,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # obconf for openbox 
 #  
 RUN apt-get update && apt-get install -y --no-install-recommends  \
-		python-xdg 						\
+	python3-xdg 						\
         obconf 							\
-		x11-apps 						\
+	x11-apps 						\
         lxappearance-obconf 			\
         lxappearance 					\
         gtk2-engines 					\
-		gtk2-engines-pixbuf 			\ 
-		gettext 						\
-		autocutsel 						\
+	gtk2-engines-pixbuf 			\ 
+	gettext 						\
+	autocutsel 						\
     && apt-get clean
 
 
@@ -147,8 +134,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
 # cups: printer support
 RUN  apt-get update && apt-get install -y --no-install-recommends \
         smbclient	\
-		cups-pdf 	\
-		scrot  		\
+	cups-pdf 	\
+	scrot  		\
         cups		\
     && apt-get clean
 
