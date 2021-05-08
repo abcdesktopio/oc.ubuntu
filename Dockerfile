@@ -69,24 +69,19 @@ RUN   apt-get update && apt-get install -y --no-install-recommends \
         wmctrl 				\
     && apt-get clean
 
-
-##
-# install Microsoft Fonts
-# accept eula for mscorefonts package
-RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
-		
+	
 ## 
 # install fonts and themes
 RUN  apt-get update && apt-get install -y --no-install-recommends \
-		xfonts-base						\
-        xfonts-encodings                \
-        xfonts-utils                    \
-		fonts-noto 						\
-		fonts-roboto 					\
-		fonts-ubuntu 					\
-		fonts-freefont-ttf 				\
-		fonts-wine 						\
-		ttf-ubuntu-font-family 			\
+	xfonts-base		\
+        xfonts-encodings        \
+        xfonts-utils            \
+	fonts-noto 		\
+	fonts-roboto 		\
+	fonts-ubuntu 		\
+	fonts-freefont-ttf 	\
+	fonts-wine 		\
+	ttf-ubuntu-font-family 	\
     && apt-get clean
 
 #
@@ -99,13 +94,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends\
-		pulseaudio 					\
-		pulseaudio-utils 				\
+	pulseaudio 			\
+	pulseaudio-utils 		\
     && apt-get clean
 
 # add numix theme
 RUN add-apt-repository ppa:numix:ppa -y && \
-		apt-get update 	&& apt-get install -y --no-install-recommends \
+	apt-get update 	&& apt-get install -y --no-install-recommends \
 		numix-gtk-theme 			\
 		numix-icon-theme-square 		\
  	&& apt-get clean
