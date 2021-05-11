@@ -23,6 +23,12 @@ LABEL architecture "x86_64"
 # correct debconf: (TERM is not set, so the dialog frontend is not usable.)
 ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
+
+# Disable cache
+COPY 02_nocache /etc/apt/apt.conf.d/
+# Disable man pages, locales and docs
+COPY 01_nodoc	/etc/dpkg/dpkg.cfg.d/
+
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update && apt-get install -y  --no-install-recommends \
