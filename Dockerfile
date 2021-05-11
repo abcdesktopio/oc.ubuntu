@@ -7,7 +7,9 @@ ARG BASE_IMAGE=ubuntu:18.04
 # define FROM befire use ENV command
 FROM ${BASE_IMAGE}
 
-
+# define ARG 
+ARG BASE_IMAGE_RELEASE
+ARG BASE_IMAGE
 # define ARG as ENV too
 ENV BASE_IMAGE_RELEASE=$BASE_IMAGE_RELEASE
 ENV BASE_IMAGE=$BASE_IMAGE
@@ -148,7 +150,7 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 
-ADD openbox_${BASE_IMAGE_RELEASE}/*.deb /tmp/
+ADD openbox_$BASE_IMAGE_RELEASE/*.deb /tmp/
 RUN cd /tmp && \
     dpkg -i libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && rm libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
     dpkg -i libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb  && rm libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
