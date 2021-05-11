@@ -3,6 +3,8 @@ ARG BASE_IMAGE_RELEASE=18.04
 # Default base image 
 ARG BASE_IMAGE=ubuntu:18.04
 
+FROM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
+
 # use FROM BASE_IMAGE
 # define FROM befire use ENV command
 FROM ${BASE_IMAGE}
@@ -150,8 +152,8 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
         cups		\
     && apt-get clean
 
+COPY --from=openbox *.deb  /tmp
 
-ADD openbox_$BASE_IMAGE_RELEASE/*.deb /tmp/
 RUN cd /tmp && \
     dpkg -i libobt*.deb 	&& \
     dpkg -i libobrender*.deb    && \
