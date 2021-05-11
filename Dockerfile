@@ -147,8 +147,8 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
 
 ADD openbox_$BASE_IMAGE_RELEASE/*.deb /tmp/
 RUN cd /tmp && \
-    dpkg -i libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && rm libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
-    dpkg -i libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb  && rm libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
-    dpkg -i openbox_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && rm openbox_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
+    dpkg -i libobt*.deb 	&& \
+    dpkg -i libobrender*.deb    && \
+    dpkg -i openbox*.deb  	&& \
     rm -rf /tmp/*.deb
     
