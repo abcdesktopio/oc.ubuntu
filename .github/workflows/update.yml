@@ -32,6 +32,7 @@ jobs:
           context: .
           push: true
           build-args: |
+            BASE_IMAGE_RELEASE=18.04
             BASE_IMAGE=abcdesktopio/oc.software.18.04:dev
           tags: |
             abcdesktopio/oc.ubuntu.18.04:dev
