@@ -1,4 +1,10 @@
-FROM ubuntu:18.04
+# Default release is 18.04
+ARG RELEASE=18.04
+# Default base image 
+ARG BASE_IMAGE=ubuntu:18.04
+FROM ${BASE_IMAGE}
+
+ENV 
 
 LABEL maintainer="Alexandre DEVELY"
 
@@ -15,18 +21,18 @@ ENV TERM linux
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update && apt-get install -y  --no-install-recommends \
-        apt-utils                   \
-		dialog 						\
-    	debconf-utils 				\
+        apt-utils                   	\
+	dialog 				\
+    	debconf-utils 			\
     	software-properties-common 	\
-	    locales						\		
+	locales				\		
     && apt-get clean
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		language-pack-en			\
-		language-pack-fr			\
-	&& locale-gen					\
+	language-pack-en		\
+	language-pack-fr		\
+	&& locale-gen			\
 	&& apt-get clean
 
 # RUN dpkg-reconfigure locales
@@ -40,11 +46,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # python-software-properties is use for add-apt-repository
 RUN  apt-get update && apt-get install -y --no-install-recommends \
     	software-properties-common 	\
-   		net-tools 					\
-    	libgtk-3-0 					\
-    	libgtk-3-bin 				\
-    	sudo 						\
-    	curl 						\
+   	net-tools 			\
+    	libgtk-3-0 			\
+    	libgtk-3-bin 			\
+    	sudo 				\
+    	curl 				\
     && apt-get clean
 	
 
@@ -60,13 +66,13 @@ RUN echo "NO_AT_BRIDGE=1" >> /etc/environment
 # xdotools 
 # wmctrl 
 RUN   apt-get update && apt-get install -y --no-install-recommends \
-		x11-utils 			\
-		supervisor 			\
-		x11-xserver-utils 	\
-		xsettingsd			\
-		xdotool 			\
-		xdg-utils 			\
-        wmctrl 				\
+	x11-utils 		\
+	supervisor 		\
+	x11-xserver-utils 	\
+	xsettingsd		\
+	xdotool 		\
+	xdg-utils 		\
+        wmctrl 			\
     && apt-get clean
 
 	
@@ -111,15 +117,15 @@ RUN add-apt-repository ppa:numix:ppa -y && \
 # obconf for openbox 
 #  
 RUN apt-get update && apt-get install -y --no-install-recommends  \
-	python3-xdg 						\
-        obconf 							\
-	x11-apps 						\
-        lxappearance-obconf 			\
-        lxappearance 					\
-        gtk2-engines 					\
-	gtk2-engines-pixbuf 			\ 
-	gettext 						\
-	autocutsel 						\
+	python3-xdg 		\
+        obconf 			\
+	x11-apps 		\
+        lxappearance-obconf 	\
+        lxappearance 		\
+        gtk2-engines 		\
+	gtk2-engines-pixbuf 	\ 
+	gettext 		\
+	autocutsel 		\
     && apt-get clean
 
 
@@ -135,7 +141,7 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 
-ADD openbox_18.04/*.deb /tmp/
+ADD openbox_${RELEASE}/*.deb /tmp/
 RUN cd /tmp && \
     dpkg -i libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && rm libobt2v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
     dpkg -i libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb  && rm libobrender32v5_3.6.1-7ubuntu0.1abcdesktoppatch11_amd64.deb && \
