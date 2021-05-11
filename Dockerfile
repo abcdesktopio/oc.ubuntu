@@ -2,9 +2,9 @@
 ARG RELEASE=18.04
 # Default base image 
 ARG BASE_IMAGE=ubuntu:18.04
-FROM ${BASE_IMAGE}
 
-ENV 
+# use FROM BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 LABEL maintainer="Alexandre DEVELY"
 
