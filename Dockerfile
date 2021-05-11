@@ -110,11 +110,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     && apt-get clean
 
 # add numix theme
-RUN add-apt-repository ppa:numix:ppa -y && \
-	apt-get update 	&& apt-get install -y --no-install-recommends \
-		numix-gtk-theme 			\
-		numix-icon-theme-square 		\
- 	&& apt-get clean
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	numix-gtk-theme 	\
+	numix-icon-theme	\
+ && apt-get clean
 
 # X11
 # openbox
