@@ -26,11 +26,6 @@ LABEL architecture "x86_64"
 ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
 
-# Disable cache
-COPY 02_nocache /etc/apt/apt.conf.d/
-# Disable man pages, locales and docs
-COPY 01_nodoc	/etc/dpkg/dpkg.cfg.d/
-
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update && apt-get install -y  --no-install-recommends \
@@ -157,6 +152,6 @@ COPY --from=openbox *.deb  /tmp
 RUN cd /tmp && \
     dpkg -i libobt*.deb 	&& \
     dpkg -i libobrender*.deb    && \
-    dpkg -i openbox*.deb  	&& \
+    dpkg -i openbox_3.6.1*.deb  && \
     rm -rf /tmp/*.deb
     
