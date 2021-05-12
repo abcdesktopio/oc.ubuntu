@@ -147,7 +147,7 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
         cups		\
     && apt-get clean
 
-COPY --from=openbox *.deb  /tmp
+COPY --from=openbox *.deb  /tmp/
 
 RUN cd /tmp && \
     dpkg -i libobt*.deb 	&& \
