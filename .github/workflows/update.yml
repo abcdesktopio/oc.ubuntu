@@ -36,7 +36,18 @@ jobs:
             BASE_IMAGE=ubuntu:18.04
           tags: |
             abcdesktopio/oc.ubuntu.18.04:dev
-            
+
+      - name: Build and push ubuntu:20.04
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          build-args: |
+            BASE_IMAGE_RELEASE=20.04
+            BASE_IMAGE=ubuntu:20.04
+          tags: |
+            abcdesktopio/oc.ubuntu.20.04:dev
+
       - name: Build and push ubuntu:21.04
         uses: docker/build-push-action@v2
         with:
