@@ -26,22 +26,28 @@ LABEL architecture "x86_64"
 ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
 
+# set debconf to Noninteractive
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
+# 
 RUN apt-get update && apt-get install -y  --no-install-recommends \
         apt-utils                   	\
 	dialog 				\
     	debconf-utils 			\
     	software-properties-common 	\
 	locales				\		
-    && apt-get clean
+    && apt-get clean			\
+    && rm -rf /var/lib/apt/lists/*
+
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	language-pack-en		\
 	language-pack-fr		\
 	&& locale-gen			\
-	&& apt-get clean
+	&& apt-get clean 		\
+    	&& rm -rf /var/lib/apt/lists/*
+
 
 # RUN dpkg-reconfigure locales
 # RUN locale-gen fr_FR.UTF-8
@@ -59,7 +65,9 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
     	libgtk-3-bin 			\
     	sudo 				\
     	curl 				\
-    && apt-get clean
+    && apt-get clean			\
+    && rm -rf /var/lib/apt/lists/*
+
 	
 
 
@@ -81,7 +89,9 @@ RUN   apt-get update && apt-get install -y --no-install-recommends \
 	xdotool 		\
 	xdg-utils 		\
         wmctrl 			\
-    && apt-get clean
+    && apt-get clean		\
+    && rm -rf /var/lib/apt/lists/*
+
 
 	
 ## 
@@ -96,7 +106,9 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
 	fonts-freefont-ttf 	\
 	fonts-wine 		\
 	ttf-ubuntu-font-family 	\
-    && apt-get clean
+    && apt-get clean	 	\
+    && rm -rf /var/lib/apt/lists/*
+
 
 #
 # install themes
@@ -104,19 +116,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gnome-icon-theme                \
         gnome-icon-theme-symbolic       \
         gnome-font-viewer               \
-    && apt-get clean
+    && apt-get clean			\
+    && rm -rf /var/lib/apt/lists/*
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends\
 	pulseaudio 			\
 	pulseaudio-utils 		\
-    && apt-get clean
+    && apt-get clean  			\
+    && rm -rf /var/lib/apt/lists/*
+
 
 # add numix theme
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	numix-gtk-theme 	\
 	numix-icon-theme	\
- && apt-get clean
+    && apt-get clean  		\
+    && rm -rf /var/lib/apt/lists/*
+
 
 # X11
 # openbox
@@ -133,7 +150,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
 	gtk2-engines-pixbuf 	\ 
 	gettext 		\
 	autocutsel 		\
-    && apt-get clean
+    && apt-get clean  		\
+    && rm -rf /var/lib/apt/lists/*
+
 
 
 # cups-pdf: pdf printer support
@@ -145,7 +164,9 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
 	cups-pdf 	\
 	scrot  		\
         cups		\
-    && apt-get clean
+    && apt-get clean	 \
+    && rm -rf /var/lib/apt/lists/*
+
 
 COPY --from=openbox *.deb  /tmp/
 
