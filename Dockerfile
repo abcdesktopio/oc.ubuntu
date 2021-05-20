@@ -170,8 +170,8 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=openbox *.deb  /tmp/
 
-RUN cd /tmp && \
-    dpkg -i libobt*.deb 	&& \
+WORKDIR /tmp
+RUN dpkg -i libobt*.deb 	&& \
     dpkg -i libobrender*.deb    && \
     dpkg -i openbox_3.6.1*.deb  && \
     rm -rf /tmp/*.deb
