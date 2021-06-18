@@ -119,13 +119,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean			\
     && rm -rf /var/lib/apt/lists/*
 
-
+# add pulse audio utils
+# add cupds client
 RUN apt-get update && apt-get install -y --no-install-recommends\
-	pulseaudio 			\
 	pulseaudio-utils 		\
     && apt-get clean  			\
     && rm -rf /var/lib/apt/lists/*
 
+# add cupds client
+RUN apt-get update && apt-get install -y --no-install-recommends\
+	cups-client			\
+    && apt-get clean  			\
+    && rm -rf /var/lib/apt/lists/*
 
 # add numix theme
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -151,20 +156,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
 	gettext 		\
 	autocutsel 		\
     && apt-get clean  		\
-    && rm -rf /var/lib/apt/lists/*
-
-
-
-# cups-pdf: pdf printer support
-# scrot: screenshot tools
-# smbclient need to install smb printer
-# cups: printer support
-RUN  apt-get update && apt-get install -y --no-install-recommends \
-        smbclient	\
-	cups-pdf 	\
-	scrot  		\
-        cups		\
-    && apt-get clean	 \
     && rm -rf /var/lib/apt/lists/*
 
 
