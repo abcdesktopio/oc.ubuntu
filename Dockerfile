@@ -155,12 +155,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
     && apt-get clean  		\
     && rm -rf /var/lib/apt/lists/*
 
-
+# install the abcdesktop openbox package
 COPY --from=openbox *.deb  /tmp/
-
 WORKDIR /tmp
-RUN dpkg -i libobt*.deb 	&& \
-    dpkg -i libobrender*.deb    && \
-    dpkg -i openbox_3.6.1*.deb  && \
-    rm -rf /tmp/*.deb
+RUN dpkg -i libobt*.deb
+RUN dpkg -i libobrender*.deb
+RUN dpkg -i openbox_3.6.1*.deb
+RUN rm -rf /tmp/*.deb
     
