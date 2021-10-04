@@ -3,7 +3,7 @@ ARG BASE_IMAGE_RELEASE=18.04
 # Default base image 
 ARG BASE_IMAGE=ubuntu:18.04
 
-FROM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
+FROM --platform=$TARGETPLATFORM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 
 # use FROM BASE_IMAGE
 # define FROM before use ENV command
