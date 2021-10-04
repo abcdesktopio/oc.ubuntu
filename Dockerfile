@@ -6,7 +6,7 @@ ARG BASE_IMAGE=ubuntu:18.04
 FROM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 
 # use FROM BASE_IMAGE
-# define FROM befire use ENV command
+# define FROM before use ENV command
 FROM ${BASE_IMAGE}
 
 # define ARG 
@@ -16,7 +16,7 @@ ARG BASE_IMAGE
 LABEL maintainer="Alexandre DEVELY"
 
 LABEL vcs-type "git"
-LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.18.04"
+LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.${BASE_IMAGE_RELEASE}"
 LABEL vcs-ref  "main"
 
 
@@ -29,7 +29,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 # 
 RUN apt-get update && apt-get install -y  --no-install-recommends \
-        apt-utils                   	\
 	dialog 				\
     	debconf-utils 			\
     	software-properties-common 	\
