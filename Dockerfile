@@ -17,10 +17,8 @@ LABEL maintainer="Alexandre DEVELY"
 
 LABEL vcs-type "git"
 LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.18.04"
-LABEL vcs-ref  "master"
-LABEL release  "5"
-LABEL version  "1.2"
-LABEL architecture "x86_64"
+LABEL vcs-ref  "main"
+
 
 # correct debconf: (TERM is not set, so the dialog frontend is not usable.)
 ENV DEBCONF_FRONTEND noninteractive
