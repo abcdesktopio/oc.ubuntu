@@ -40,7 +40,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          build-args: BUILDPLATFORM=linux/amd64, BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
+          build-args: BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
           tags: |
             abcdesktopio/oc.ubuntu.${{ matrix.BASE_IMAGE_RELEASE }}:dev
 
@@ -51,7 +51,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/arm/v7
           push: true
-          build-args: BUILDPLATFORM=linux/arm/v7, BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
+          build-args: BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
           tags: |
             abcdesktopio/oc.ubuntu.${{ matrix.BASE_IMAGE_RELEASE }}:dev
             
@@ -62,7 +62,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/arm64
           push: true
-          build-args: BUILDPLATFORM=linux/arm64, BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
+          build-args: BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}, BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }}
           tags: |
             abcdesktopio/oc.ubuntu.${{ matrix.BASE_IMAGE_RELEASE }}:dev
             
