@@ -32,6 +32,12 @@ jobs:
         
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+        
+      - name: Create oc.ubuntu.build
+        run: |
+          docker buildx create --use    --name ocubuntubuild node-amd64
+          docker buildx create --append --name ocubuntubuild node-arm64
+          docker buildx create --append --name ocubuntubuild node-armv7
 
       - name: Build and push
         uses: docker/build-push-action@v2
