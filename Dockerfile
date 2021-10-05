@@ -14,6 +14,7 @@ ARG BUILDPLATFORM
 # TARGETVARIANT=${TARGETVARIANT}
 # UNAME_S=uname -s
 # UNAME_MM uname -mm
+RUN echo "Dockerfile running on BUILDPLATFORM=$BUILDPLATFORM, building for TARGETPLATFORM=$TARGETPLATFORM"
 
 FROM --platform=$BUILDPLATFORM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 
@@ -30,7 +31,6 @@ LABEL maintainer="Alexandre DEVELY"
 LABEL vcs-type "git"
 LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.${BASE_IMAGE_RELEASE}"
 LABEL vcs-ref  "main"
-
 
 # correct debconf: (TERM is not set, so the dialog frontend is not usable.)
 ENV DEBCONF_FRONTEND noninteractive
