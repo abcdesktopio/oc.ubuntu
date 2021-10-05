@@ -45,7 +45,8 @@ Build process load metadata from docker.io/abcdesktopio/openbox:20.04
 
 ### abcdesktopio/openbox:20.04 for linux/arm/v7
 
-```docker buildx build --platform linux/arm/v7 --tag abcdesktopio/oc.ubuntu.20.04:dev --build-arg BUILDPLATFORM=linux/arm/v7 --build-arg BASE_IMAGE_RELEASE=20.04 --build-arg BASE_IMAGE=ubuntu:20.04 .
+```
+docker buildx build --platform linux/arm/v7 --tag abcdesktopio/oc.ubuntu.20.04:dev --build-arg BUILDPLATFORM=linux/arm/v7 --build-arg BASE_IMAGE_RELEASE=20.04 --build-arg BASE_IMAGE=ubuntu:20.04 .
 ```
 
 ### abcdesktopio/openbox:20.04 for linux/arm64
