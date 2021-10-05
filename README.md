@@ -1,4 +1,4 @@
-# oc.ubuntu.18.04
+# oc.ubuntu
 
 ## To get more informations
 
