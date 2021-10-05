@@ -31,6 +31,7 @@ jobs:
 
       - name: Run Buildx openbox.${{ matrix.BASE_IMAGE_RELEASE }}
         run: |
+          docker buildx version
           docker buildx build \
             --build-arg BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }} \
             --build-arg BASE_IMAGE=ubuntu:${{ matrix.BASE_IMAGE_RELEASE }} \
