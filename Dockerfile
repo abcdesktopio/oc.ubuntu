@@ -5,15 +5,16 @@ ARG BASE_IMAGE_RELEASE=18.04
 # Default base image 
 ARG BASE_IMAGE=ubuntu:18.04
 
-FROM --platform=$BUILDPLATFORM golang:alpine AS infobuild
+FROM --platform=${BUILDPLATFORM} golang:alpine AS infobuild
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
-FROM --platform=$BUILDPLATFORM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
+FROM --platform=${BUILDPLATFORM} abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+RUN ls -la /
 
 
 
