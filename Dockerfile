@@ -1,3 +1,10 @@
+
+FROM --platform=$BUILDPLATFORM golang:alpine AS infobuild
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+
+
 # Default release is 18.04
 ARG BASE_IMAGE_RELEASE=18.04
 # Default base image 
