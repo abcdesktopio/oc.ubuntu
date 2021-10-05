@@ -5,19 +5,14 @@ ARG BASE_IMAGE_RELEASE=18.04
 # Default base image 
 ARG BASE_IMAGE=ubuntu:18.04
 
-FROM --platform=${BUILDPLATFORM} golang:alpine AS infobuild
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM"
-
+# use as source for openbox debian package 
 FROM --platform=${BUILDPLATFORM} abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
-RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM"
-RUN ls -la /
 
 
-
+#
+# Dockerfile oc.ubuntu  
 # use FROM BASE_IMAGE
 # define FROM before use ENV command
 FROM ${BASE_IMAGE}
@@ -27,7 +22,6 @@ ARG BASE_IMAGE_RELEASE
 ARG BASE_IMAGE
 
 LABEL maintainer="Alexandre DEVELY"
-
 LABEL vcs-type "git"
 LABEL vcs-url  "https://github.com/abcdesktopio/oc.ubuntu.${BASE_IMAGE_RELEASE}"
 LABEL vcs-ref  "main"
@@ -118,13 +112,13 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean	 	\
     && rm -rf /var/lib/apt/lists/*
 
-
 #
 # install themes
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gnome-icon-theme                \
         gnome-icon-theme-symbolic       \
-        gnome-font-viewer               \
+	numix-gtk-theme 	\
+	numix-icon-theme	\
     && apt-get clean			\
     && rm -rf /var/lib/apt/lists/*
 
@@ -132,22 +126,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # add cupds client
 RUN apt-get update && apt-get install -y --no-install-recommends\
 	pulseaudio-utils 		\
-    && apt-get clean  			\
-    && rm -rf /var/lib/apt/lists/*
-
-# add cupds client
-RUN apt-get update && apt-get install -y --no-install-recommends\
 	cups-client			\
     && apt-get clean  			\
     && rm -rf /var/lib/apt/lists/*
-
-# add numix theme
-RUN apt-get update && apt-get install -y --no-install-recommends \
-	numix-gtk-theme 	\
-	numix-icon-theme	\
-    && apt-get clean  		\
-    && rm -rf /var/lib/apt/lists/*
-
 
 # X11
 # openbox
@@ -169,6 +150,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
 
 # install the abcdesktop openbox package
 COPY --from=openbox *.deb  /tmp/
+RUN ls -la /tmp
 WORKDIR /tmp
 RUN dpkg -i libobt*.deb
 RUN dpkg -i libobrender*.deb
