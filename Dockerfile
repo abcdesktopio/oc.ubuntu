@@ -6,7 +6,7 @@ ARG BASE_IMAGE_RELEASE=18.04
 ARG BASE_IMAGE=ubuntu:18.04
 
 # use as source for openbox debian package 
-FROM --platform=$BUILDPLATFORM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
+FROM abcdesktopio/openbox:${BASE_IMAGE_RELEASE} AS openbox
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
