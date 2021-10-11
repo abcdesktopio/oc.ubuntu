@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y  --no-install-recommends \
 	dialog 				\
     	debconf-utils 			\
     	software-properties-common 	\
-	locales				\		
+	locales				\
     && apt-get clean			\
     && rm -rf /var/lib/apt/lists/*
 
@@ -150,10 +150,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends  \
 
 # install the abcdesktop openbox package
 COPY --from=openbox *.deb  /tmp/
-RUN ls -la /tmp
 WORKDIR /tmp
-RUN dpkg -i libobt*.deb
-RUN dpkg -i libobrender*.deb
-RUN dpkg -i openbox_3.6.1*.deb
-RUN rm -rf /tmp/*.deb
+RUN apt-get update && apt-get install -y --no-install-recommends  \
+    	dpkg 				&& \
+    dpkg -i libobt*.deb			&& \
+    dpkg -i libobrender*.deb		&& \
+    dpkg -i openbox_3.6.1*.deb		&& \
+    rm -rf /tmp/*.deb			&& \
+    apt-get clean  			&& \
+    rm -rf /var/lib/apt/lists/*
+    
     
