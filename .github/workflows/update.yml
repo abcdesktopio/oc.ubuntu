@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        BASE_IMAGE_RELEASE: ["18.04", "21.04"]
+        BASE_IMAGE_RELEASE: ["18.04", "20.04", "21.04"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64, linux/arm/v7, linux/arm64
+          platforms: linux/amd64
           push: true
           build-args: |
             BASE_IMAGE_RELEASE=${{ matrix.BASE_IMAGE_RELEASE }}
