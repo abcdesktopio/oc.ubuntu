@@ -108,7 +108,6 @@ RUN  apt-get update && apt-get install -y --no-install-recommends \
 	fonts-ubuntu 		\
 	fonts-freefont-ttf 	\
 	fonts-wine 		\
-	ttf-ubuntu-font-family 	\
     && apt-get clean	 	\
     && rm -rf /var/lib/apt/lists/*
 
