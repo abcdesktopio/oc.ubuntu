@@ -39,6 +39,7 @@ RUN apt-get update && apt-get install -y  --no-install-recommends \
     	debconf-utils 			\
     	software-properties-common 	\
 	locales				\
+	lsb-release			\
     && apt-get clean			\
     && rm -rf /var/lib/apt/lists/*
 
